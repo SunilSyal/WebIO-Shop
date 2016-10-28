@@ -43,7 +43,7 @@ exports.config = {
         chai.use(chaiAsPromised);
         global.expect = chai.expect;
         chai.Should();
-        browser.url('http://christmasfood.marksandspencer.com');
+        browser.url('http://christmasfood.sit2.marksandspencer.com');
 
     }
 }
