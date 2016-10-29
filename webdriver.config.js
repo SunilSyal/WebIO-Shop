@@ -7,6 +7,7 @@ exports.config = {
     host: 'localhost',
     port: 4444,
 
+
     specs: [
         'spec/**/all.gl*.spec.js'
     ],
