@@ -1,50 +1,81 @@
-var SMALL = "small";
-var ALL = "all";
-var XSMALL = "xsmall";
+var specs = require('./specs');
+var specArr = specs.getSpecs(process.argv);
+
+var argsInfo = 'Page:: ' + specs.fnGetArgValue(process.argv, '-p') + ', Breakpoint:: ' + specs.fnGetArgValue(process.argv, '-b');
+
+var capabilities = {
+    'large': [{
+        name: 'Browser:: Chrome, ' + argsInfo,
+        browserName: 'chrome'
+    }],
+
+    'medium': [{
+        name: 'Browser:: Chrome, ' + argsInfo,
+        browserName: 'chrome',
+        chromeOptions: {
+            'mobileEmulation': {
+                deviceMetrics: {
+                    'width': 992,
+                    'height': 1024,
+                    'pixelRatio': 2
+                }
+            }
+        }
+    }],
+
+    'small': [{
+        name: 'Browser:: Chrome, ' + argsInfo,
+        browserName: 'chrome',
+        chromeOptions: {
+            'mobileEmulation': {
+                deviceMetrics: {
+                    'width': 768,
+                    'height': 1024,
+                    'pixelRatio': 2
+                }
+            }
+        }
+    }],
+
+    'xsmall': [{
+        name: 'Browser:: Chrome, ' + argsInfo,
+        browserName: 'chrome',
+        chromeOptions: {
+            'mobileEmulation': {
+                deviceMetrics: {
+                    'width': 480,
+                    'height': 768,
+                    'pixelRatio': 2
+                }
+            }
+        }
+    }]
+}
 
 exports.config = {
 
-    host: 'localhost',
-    port: 4444,
+    //host: 'localhost',
+    //port: 4444,
 
+    user: 'ajayvashist',
+    key: '3a3de365-598e-46f8-8d34-5a669e754e95',
 
-    specs: [
-        'spec/**/all.gl*.spec.js'
-    ],
+    specs: specArr,
 
     services: ['selenium-standalone'],
 
-    // Patterns to exclude.
-    exclude: [
-        'spec/multibrowser/**',
-        'spec/mobile/**'
-    ],
+    maxInstances: 3,
 
-    maxInstances: 1,
-
-    capabilities: [{
-        browserName: 'chrome'
-    }
-
-    /* {
-        browserName: 'firefox',
-        exclude: [
-            'spec/sample*.*'
-        ],
-    }
-*/
-  ],
+    capabilities: capabilities[specs.fnGetArgValue(process.argv, '-b')],
 
     sync: true,
     reporters: ['spec'],
 
-    before: function(capabilities, specs) {
+    before: function() {
         var chai = require('chai');
         var chaiAsPromised = require('chai-as-promised');
         chai.use(chaiAsPromised);
         global.expect = chai.expect;
         chai.Should();
-        browser.url('http://christmasfood.sit2.marksandspencer.com');
-
     }
 }
