@@ -19,13 +19,12 @@ function getSpecs(args) {
             'small': '_S_',
             'xsmall': '_XS_',
         },
-        specArr = [
-            'spec/**/_A_*.test.js'
-        ],
+        specArr = [],
         selectedBreakPoint;
 
     selectedBreakPoint = breakPoints[fnGetArgValue(args, '-b')];
     selectedPage = fnGetArgValue(args, '-p');
+    specArr.push('spec/'+selectedPage+'/_A_*.test.js')
 
     specArr.push('spec/' + selectedPage + '/*' + selectedBreakPoint + '*.test.js')
     return (specArr)
