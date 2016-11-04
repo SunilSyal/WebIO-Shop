@@ -1,36 +1,18 @@
+var loyalty = require("../../common/loyaltyFunctions")
+
 describe('Sparks Sign In Journey', function() {
 
     beforeEach(function() {
         browser.url('http://marksandspencer.com');
     })
 
-    function sparksPageVerification() {
-        browser.waitForVisible('.sparks a.link');
-        browser.click('.sparks a.link');
-        expect(browser.getTitle()).to.contain('M&S Sparks');
-    }
-
-    function sparksSignIn() {
-        //Sign In to Sparks
-        browser.waitForEnabled('.btn--north-primary');
-        browser.click('.btn--north-primary');
-
-        //Entering Login details
-        browser.setValue('#email', 'aroraneha.16@gmail.com');
-        browser.setValue('#password', 'wcs12345');
-
-        browser.scroll('#email');
-        //Clicking Submit button
-        browser.click('.btn--north-primary');
-    }
-
     it('Should verify journey to test sparks link and clicking it should take to sparks page and then to verify charity page', function() {
 
         this.timeout(0);
         expect(browser.getTitle()).to.contain('Welcome to Marks');
 
-        sparksPageVerification();
-        sparksSignIn();
+        loyalty.pageVerification();
+        loyalty.signIn();
 
         browser.waitForVisible('.sticky-element .topbar__left-wrapper');
         expect(browser.getTitle()).to.contain('Home');
