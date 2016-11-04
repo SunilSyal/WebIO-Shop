@@ -1,76 +1,32 @@
+var cfto = require("../../common/cftoFunctions")
+
   describe('Testing - CFTO UK Site', function() {
 
       beforeEach(function(done) {
           browser.url('http://christmasfood.marksandspencer.com');
       });
 
-      function addToBag() {
-          browser.click('.add-to-bag__btn');
-          browser.waitForVisible('script + .minibag-container', 10000);
-          browser.click('script + .minibag-container .minibag-summary__button');
-          browser.click('button[data-analyticsfunction="analyticsCheckoutButtonClicked"]');
-      }
-
-      function logIn() // Function to provide Login Information
-      {
-          browser.setValue('#loginEmail', 'sroy@sapient.com');
-          browser.setValue('#loginPassword', 'welcome1');
-          browser.waitForEnabled('.my-account__subcontent__signIn-btn', 10000);
-          browser.click('.my-account__subcontent__signIn-btn');
-      }
-
-      function search() { // Function to perform search operation on CFTO site
-          browser.setValue('.search-component__input', 'Turkey');
-          browser.click('.search-component__btn');
-      }
-
-      function chooseCollection() {
-          //Store Finder of the collection Page
-          browser.setValue('.collection--store-finder__search-form__input', 'Covent Garden');
-          browser.click('.collection--store-finder__search-form__btn');
-
-          //Confirm the selected store from the store list
-          browser.click('.btn--primary');
-
-          //Confirm the store selection date
-          browser.click('.btn--primary');
-
-          //Select the store selection time slot
-          browser.click('.collection-continue .btn--primary');
-
-          //Click to confirm the choosen collection slot data & move-on to payment page
-          browser.click('.collection--summary__btn');
-      }
-
-      function cardDetails() {
-          browser.selectByValue('select[name="cardType"]', '11105_Mastercard');
-          browser.setValue('#account', '5105105105105100');
-          browser.setValue('#expiryMonth', '02');
-          browser.setValue('#expiryYear', '18');
-          browser.setValue('div[ng-form="paymentDetailsCtrl.form"] #cvv', '609');
-      }
-
-      it.only('Add an item to the basket', function() {
+      it('Add an item to the basket', function() {
           this.timeout(0);
           browser.click('.add-to-bag__btn');
           browser.waitForVisible('script + .minibag-container', 10000);
           browser.click('script + .minibag-container .minibag-summary__button');
           browser.click('button[data-analyticsfunction="analyticsCheckoutButtonClicked"]');
-          logIn();
+          cfto.logIn();
       });
 
       it('Place an UK CFTO order with registered user with added item', function() {
           this.timeout(0);
 
           //Add item to the basket & land on the basket page by click on the bag button on the minibag pop-up
-          addToBag();
+          cfto.addToBag();
 
           // Function to login the user
-          logIn();
+          cfto.logIn();
 
           browser.click('button[data-analyticsfunction="analyticsCheckoutButtonClicked"]'); // This will appear in case of basket merge scenario
 
-          chooseCollection(); // To choose the collection date & slot
+          cfto.chooseCollection(); // To choose the collection date & slot
 
           // Add a new card from payment page
           browser.click('#add-card-btn-inline');
@@ -94,16 +50,16 @@
           this.timeout(0);
 
           //Add item to the basket & land on the basket page by click on the bag button on the minibag pop-up
-          addToBag();
+          cfto.addToBag();
 
           // Choose guest checkout option on the checkout login page
           browser.click('#guestCheckoutContButton');
 
           // Choose collection slot & date
-          chooseCollection();
+          cfto.chooseCollection();
 
           // To put in the card details
-          cardDetails();
+          cfto.cardDetails();
           browser.click('.payment__manual-link');
           browser.selectByValue('.billing-form #personTitle', 'Mr');
           browser.setValue('.billing-form #firstName', 'Sumit');
@@ -121,21 +77,21 @@
           expect(browser.element('.order-confirm-msg__content .order-confirm-msg__keyword').getText()).to.contain('401');
       });
 
-      it('Place an UK CFTO order with guest user by searching product using global seacrh', function() {
+      it.only('Place an UK CFTO order with guest user by searching product using global seacrh', function() {
           this.timeout(0);
-          search(); // To search an item
+          cfto.search(); // To search an item
 
           // Add item to the bag
-          addToBag();
+          cfto.addToBag();
 
           //Choose guest checkout option on the checkout login page
           browser.click('#guestCheckoutContButton');
 
           // To choose collection date & slot
-          chooseCollection();
+          cfto.chooseCollection();
 
           // To put in the card details
-          cardDetails();
+          cfto.cardDetails();
           browser.click('.payment__manual-link');
           browser.selectByValue('.billing-form #personTitle', 'Mr');
           browser.setValue('.billing-form #firstName', 'Sumit');

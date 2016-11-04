@@ -54,8 +54,8 @@ var capabilities = {
 
 exports.config = {
 
-    //host: 'localhost',
-    //port: 4444,
+    host: 'localhost',
+    port: 4444,
 
     user: 'ajayvashist',
     key: '3a3de365-598e-46f8-8d34-5a669e754e95',
@@ -64,7 +64,9 @@ exports.config = {
 
     services: ['selenium-standalone'],
 
-    maxInstances: 3,
+    maxInstances: 10,
+
+    waitforTimeout: 15000,
 
     capabilities: capabilities[specs.fnGetArgValue(process.argv, '-b')],
 
