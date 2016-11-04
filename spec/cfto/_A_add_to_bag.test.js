@@ -31,9 +31,9 @@ describe('Testing - CFTO UK Site', function() {
         browser.click('#add-card-btn-inline');
         cfto.cardDetailsLightBox(); // To put in the card details
         browser.click('button[data-element="AddCardAddressOverlay"]');
-        browser.waitForVisible('#address-details__add', 10000);
+        browser.waitForVisible('#address-details__add');
         browser.click('#address-details__add');
-        browser.waitForVisible('.payment-button', 10000);
+        browser.waitForVisible('.payment-button');
         browser.setValue('.credit-debit-card-form #cvv', '609');
         browser.click('.payment-button');
 
@@ -60,23 +60,17 @@ describe('Testing - CFTO UK Site', function() {
         // To put in the card details
         cfto.cardDetailsForm();
         browser.click('.billing-form .payment__manual-link');
-        browser.selectByValue('.billing-form #personTitle', 'Mr');
-        browser.setValue('.billing-form #firstName', 'Sumit');
-        browser.setValue('.billing-form #lastName', 'Roy');
-        browser.setValue('.billing-form #phone1', '07459686444');
-        browser.setValue('.billing-form #address1', '23, Egremont House');
-        browser.setValue('.billing-form #city', 'London');
-        browser.setValue('.billing-form #zipCode', 'E20 1BF');
+        cfto.userAddressForm(); // To put user address in the form
         browser.setValue('#guestemail', 'sroy@sapient.com');
-        browser.waitForEnabled('.payment-button ', 30000);
+        browser.waitForEnabled('.payment-button ');
         browser.click('.payment-button');
         browser.click('.order-review__terms .lbl-checkbox');
-        browser.waitForEnabled('input[type="submit"]', 5000);
+        browser.waitForEnabled('input[type="submit"]');
         browser.click('input[type="submit"]');
         expect(browser.element('.order-confirm-msg__content .order-confirm-msg__keyword').getText()).to.contain('401');
     });
 
-    it('Place an UK CFTO order with guest user by searching product using global seacrh', function() {
+    it.only('Place an UK CFTO order with guest user by searching product using global seacrh', function() {
         this.timeout(0);
         cfto.search(); // To search an item
 
@@ -92,18 +86,11 @@ describe('Testing - CFTO UK Site', function() {
         // To put in the card details
         cfto.cardDetailsForm();
         browser.click('.billing-form .payment__manual-link');
-        browser.selectByValue('.billing-form #personTitle', 'Mr');
-        browser.setValue('.billing-form #firstName', 'Sumit');
-        browser.setValue('.billing-form #lastName', 'Roy');
-        browser.setValue('.billing-form #phone1', '07459686444');
-        browser.setValue('.billing-form #address1', '23, Egremont House');
-        browser.setValue('.billing-form #city', 'London');
-        browser.setValue('.billing-form #zipCode', 'E20 1BF');
-        browser.setValue('#guestemail', 'sroy@sapient.com');
-        browser.waitForEnabled('.payment-button ', 30000);
+        cfto.userAddressForm(); // To put user address in the form
+        browser.waitForEnabled('.payment-button ');
         browser.click('.payment-button');
         browser.click('.order-review__terms .lbl-checkbox');
-        browser.waitForEnabled('input[type="submit"]', 5000);
+        browser.waitForEnabled('input[type="submit"]');
         browser.click('input[type="submit"]');
         expect(browser.element('.order-confirm-msg__content .order-confirm-msg__keyword').getText()).to.contain('401');
     });
