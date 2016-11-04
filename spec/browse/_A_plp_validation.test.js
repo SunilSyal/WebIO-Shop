@@ -16,8 +16,7 @@ describe.only('Browse PLP Validations', function() {
         var itemCount = browser.getText('.item-count .count');
         browser.scroll('input[data-facettype="Style"] + label + .content ul li');
         browser.click('input[data-facettype="Style"] + label + .content ul li + li a');
-        browser.waitForVisible('.loading-modal');
-        browser.waitForVisible('.loading-modal', true);
+        browser.pause(5000);
         browser.waitForVisible('.item-count .count');
         var newCount = browser.getText('.item-count .count');
         browser.scroll('input[data-facettype="Style"] + label + .content ul li');
