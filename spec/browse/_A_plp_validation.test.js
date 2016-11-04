@@ -4,16 +4,8 @@ describe.only('Browse PLP Validations', function() {
         browser.url('http://www.marksandspencer.com/');
     })
 
-    it('Should verify product landing page', function() {
-        this.timeout(0);
-        browser.moveToObject('a[data-analyticsid="#_WOMEN"]');
-        browser.waitForVisible('a[href*="/l/women/dresses"]', 8000);
-        browser.moveToObject('a[href*="/l/women/dresses"]');
-        browser.click('a[href*="/l/women/dresses"]');
-        expect(browser.getTitle()).contain('Dresses');
-    });
 
-    it('Should verify facet selection', function() {
+    it('Should verify product landing page and facet selection', function() {
         this.timeout(0);
         browser.moveToObject('a[data-analyticsid="#_WOMEN"]');
         browser.waitForVisible('a[href*="/l/women/dresses"]');
