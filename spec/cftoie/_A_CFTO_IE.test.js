@@ -15,8 +15,13 @@ describe('Testing - CFTO Ireland Site', function() {
         //Add item to the basket & land on the basket page by click on the bag button on the minibag pop-up
         cfto.addToBag();
 
-        // Choose collection slot & date
-        cfto.chooseCollectionIE();
+
+
+        // To choose an Ireland Store for delivery
+        browser.click('#store_4048');
+
+        // To choose collection date & slot
+        cfto.chooseCollection();
 
         // To put in the card details
         cfto.cardDetailsForm();
@@ -40,8 +45,11 @@ describe('Testing - CFTO Ireland Site', function() {
         //Add item to the basket & land on the basket page by click on the bag button on the minibag pop-up
         cfto.addToBag();
 
+        // To choose an Ireland Store for delivery
+        browser.click('#store_4048');
+
         // To choose collection date & slot
-        cfto.chooseCollectionIE();
+        cfto.chooseCollection();
 
         // To put in the card details
         cfto.cardDetailsForm();
@@ -74,10 +82,6 @@ describe('Testing - CFTO Ireland Site', function() {
         var bc = ex.slice(-3, 1); //It shows the name of the perfect partner product added to the basket
 
         // This checks whether the product from perfect partners carousel gets added to the basket & its same as first item in carousel
-        if (ez == bc) {
-            expect("true").to.be.equal("true");
-        }
-
+        expect(ez).to.be.equal(bc);
     });
-
 });

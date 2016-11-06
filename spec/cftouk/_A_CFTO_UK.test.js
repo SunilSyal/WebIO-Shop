@@ -25,7 +25,12 @@ describe('Testing - CFTO UK Site', function() {
 
         browser.click('button[data-analyticsfunction="analyticsCheckoutButtonClicked"]'); // This will appear in case of basket merge scenario
 
-        cfto.chooseCollectionUK(); // To choose the collection date & slot
+        // To choose an UK Store for delivery
+        browser.setValue('.collection--store-finder__search-form__input', 'Covent Garden');
+        browser.click('.collection--store-finder__search-form__btn');
+
+        // To choose collection date & slot
+        cfto.chooseCollection();
 
         // Add a new card from payment page
         browser.click('#add-card-btn-inline');
@@ -34,7 +39,7 @@ describe('Testing - CFTO UK Site', function() {
         browser.waitForVisible('#address-details__add');
         browser.click('#address-details__add');
         browser.waitForVisible('.payment-button');
-        browser.setValue('.credit-debit-card-form #cvv', '609');
+        browser.setValue('.credit-debit-card-form #cvv', '215');
         browser.click('.payment-button');
 
         // Confirm the order by clicking on the place order button
@@ -54,8 +59,12 @@ describe('Testing - CFTO UK Site', function() {
         // Choose guest checkout option on the checkout login page
         browser.click('#guestCheckoutContButton');
 
-        // Choose collection slot & date
-        cfto.chooseCollectionUK();
+        // To choose an UK Store for delivery
+        browser.setValue('.collection--store-finder__search-form__input', 'Covent Garden');
+        browser.click('.collection--store-finder__search-form__btn');
+
+        // To choose collection date & slot
+        cfto.chooseCollection();
 
         // To put in the card details
         cfto.cardDetailsForm();
@@ -80,8 +89,13 @@ describe('Testing - CFTO UK Site', function() {
         //Choose guest checkout option on the checkout login page
         browser.click('#guestCheckoutContButton');
 
+
+        // To choose an UK Store for delivery
+        browser.setValue('.collection--store-finder__search-form__input', 'Covent Garden');
+        browser.click('.collection--store-finder__search-form__btn');
+
         // To choose collection date & slot
-        cfto.chooseCollectionUK();
+        cfto.chooseCollection();
 
         // To put in the card details
         cfto.cardDetailsForm();
@@ -115,9 +129,6 @@ describe('Testing - CFTO UK Site', function() {
         var bc = ex.slice(-3, 1); //It shows the name of the perfect partner product added to the basket
 
         // This checks whether the product from perfect partners carousel gets added to the basket & its same as first item in carousel
-        if (ez == bc) {
-            expect("true").to.be.equal("true");
-        }
-
+        expect(ez).to.be.equal(bc);
     });
 });

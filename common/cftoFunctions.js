@@ -2,8 +2,7 @@ module.exports = {
     addToBag: addToBag,
     logIn: logIn,
     search: search,
-    chooseCollectionUK: chooseCollectionUK,
-    chooseCollectionIE: chooseCollectionIE,
+    chooseCollection: chooseCollection,
     cardDetailsLightBox: cardDetailsLightBox,
     cardDetailsForm: cardDetailsForm,
     userAddressForm: userAddressForm
@@ -30,27 +29,9 @@ function search() { // Function to perform search operation on CFTO site
     browser.click('.search-component__btn');
 }
 
-function chooseCollectionUK() {
-    //Store Finder of the collection Page
-    browser.setValue('.collection--store-finder__search-form__input', 'Covent Garden');
-    browser.click('.collection--store-finder__search-form__btn');
+function chooseCollection() {
 
     //Confirm the selected store from the store list
-    browser.click('.btn--primary');
-
-    //Confirm the store selection date
-    browser.click('.btn--primary');
-
-    //Select the store selection time slot
-    browser.click('.collection-continue .btn--primary');
-
-    //Click to confirm the choosen collection slot data & move-on to payment page
-    browser.click('.collection--summary__btn');
-}
-
-function chooseCollectionIE() {
-    //Select store from the store list and confirm
-    browser.click('#store_4048');
     browser.click('.btn--primary');
 
     //Confirm the store selection date
