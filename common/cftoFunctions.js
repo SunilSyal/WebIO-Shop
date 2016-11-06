@@ -2,7 +2,8 @@ module.exports = {
     addToBag: addToBag,
     logIn: logIn,
     search: search,
-    chooseCollection: chooseCollection,
+    chooseCollectionUK: chooseCollectionUK,
+    chooseCollectionIE: chooseCollectionIE,
     cardDetailsLightBox: cardDetailsLightBox,
     cardDetailsForm: cardDetailsForm,
     userAddressForm: userAddressForm
@@ -29,7 +30,7 @@ function search() { // Function to perform search operation on CFTO site
     browser.click('.search-component__btn');
 }
 
-function chooseCollection() {
+function chooseCollectionUK() {
     //Store Finder of the collection Page
     browser.setValue('.collection--store-finder__search-form__input', 'Covent Garden');
     browser.click('.collection--store-finder__search-form__btn');
@@ -47,20 +48,35 @@ function chooseCollection() {
     browser.click('.collection--summary__btn');
 }
 
+function chooseCollectionIE() {
+    //Select store from the store list and confirm
+    browser.click('#store_4048');
+    browser.click('.btn--primary');
+
+    //Confirm the store selection date
+    browser.click('.btn--primary');
+
+    //Select the store selection time slot
+    browser.click('.collection-continue .btn--primary');
+
+    //Click to confirm the choosen collection slot data & move-on to payment page
+    browser.click('.collection--summary__btn');
+}
+
 function cardDetailsLightBox() {
     browser.selectByValue('select[name="cardType"]', '11105_Mastercard');
-    browser.setValue('#account', '5105105105105100');
+    browser.setValue('#account', '5454609899026213');
     browser.setValue('#expiryMonth', '02');
     browser.setValue('#expiryYear', '18');
-    browser.setValue('div[ng-form="paymentDetailsCtrl.form"] #cvv', '609');
+    browser.setValue('div[ng-form="paymentDetailsCtrl.form"] #cvv', '215');
 }
 
 function cardDetailsForm() {
     browser.selectByValue('select[name="cardType"]', '11105_Mastercard');
-    browser.setValue('.payment-method #account', '5105105105105100');
+    browser.setValue('.payment-method #account', '5454609899026213');
     browser.setValue('.payment-method #expiryMonth', '02');
     browser.setValue('.payment-method #expiryYear', '18');
-    browser.setValue('.payment-method #cvv', '609');
+    browser.setValue('.payment-method #cvv', '215');
 }
 
 function userAddressForm() {

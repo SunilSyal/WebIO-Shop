@@ -25,7 +25,7 @@ describe('Testing - CFTO UK Site', function() {
 
         browser.click('button[data-analyticsfunction="analyticsCheckoutButtonClicked"]'); // This will appear in case of basket merge scenario
 
-        cfto.chooseCollection(); // To choose the collection date & slot
+        cfto.chooseCollectionUK(); // To choose the collection date & slot
 
         // Add a new card from payment page
         browser.click('#add-card-btn-inline');
@@ -55,7 +55,7 @@ describe('Testing - CFTO UK Site', function() {
         browser.click('#guestCheckoutContButton');
 
         // Choose collection slot & date
-        cfto.chooseCollection();
+        cfto.chooseCollectionUK();
 
         // To put in the card details
         cfto.cardDetailsForm();
@@ -70,7 +70,7 @@ describe('Testing - CFTO UK Site', function() {
         expect(browser.element('.order-confirm-msg__content .order-confirm-msg__keyword').getText()).to.contain('401');
     });
 
-    it.only('Place an UK CFTO order with guest user by searching product using global seacrh', function() {
+    it('Place an UK CFTO order with guest user by searching product using global seacrh', function() {
         this.timeout(0);
         cfto.search(); // To search an item
 
@@ -81,7 +81,7 @@ describe('Testing - CFTO UK Site', function() {
         browser.click('#guestCheckoutContButton');
 
         // To choose collection date & slot
-        cfto.chooseCollection();
+        cfto.chooseCollectionUK();
 
         // To put in the card details
         cfto.cardDetailsForm();
@@ -93,5 +93,31 @@ describe('Testing - CFTO UK Site', function() {
         browser.waitForEnabled('input[type="submit"]');
         browser.click('input[type="submit"]');
         expect(browser.element('.order-confirm-msg__content .order-confirm-msg__keyword').getText()).to.contain('401');
+    });
+
+    it('Validate the perfect partner gets added to the basket and the same item gets displayed on the basket', function() {
+        this.timeout(0);
+
+        //Add item to the basket & land on the basket page by click on the bag button on the minibag pop-up
+        browser.click('.add-to-bag__btn');
+        browser.waitForVisible('script + .minibag-container');
+        browser.click('script + .minibag-container .minibag-summary__button');
+
+        //Add perfect partner product from the carousel on the basket page
+        browser.moveToObject('.footer__message');
+        var ex = browser.getText('.title');
+        var ey = ex.splice(3);
+        var ez = ex.slice(-3, 1); //It shows the name of the first perfect partner in the carousel
+
+
+        browser.click('.add-to-bag__btn');
+        var ab = browser.getText('.product-item__link:nth-of-type(1)');
+        var bc = ex.slice(-3, 1); //It shows the name of the perfect partner product added to the basket
+
+        // This checks whether the product from perfect partners carousel gets added to the basket & its same as first item in carousel
+        if (ez == bc) {
+            expect("true").to.be.equal("true");
+        }
+
     });
 });
