@@ -57,8 +57,8 @@ exports.config = {
     host: 'localhost',
     port: 4444,
 
-    user: 'ajayvashist',
-    key: '3a3de365-598e-46f8-8d34-5a669e754e95',
+    // user: 'ajayvashist',
+    // key: '3a3de365-598e-46f8-8d34-5a669e754e95',
 
     specs: specArr,
 
