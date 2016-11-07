@@ -57,8 +57,15 @@ exports.config = {
             }
         },
         {
-            name: 'Chrome, XS',
+            name: 'Chrome, Large',
             browserName: 'chrome',
+            specs: [
+                './spec/'+argsInfo+'/*.js'
+            ]
+        },
+        {
+            name: 'Firefox',
+            browserName: 'firefox',
             specs: [
                 './spec/'+argsInfo+'/*.js'
             ]
