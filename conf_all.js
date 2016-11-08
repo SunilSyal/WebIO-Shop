@@ -12,7 +12,8 @@ exports.config = {
             name: 'Chrome, XS',
             browserName: 'chrome',
             specs: [
-                './spec/'+argsInfo+'/*.js'
+                './spec/'+argsInfo+'/_A_*.js',
+                './spec/'+argsInfo+'/_XS_*.js'
             ],
             chromeOptions: {
                 'mobileEmulation': {
@@ -28,7 +29,8 @@ exports.config = {
             name: 'Chrome, Medium',
             browserName: 'chrome',
             specs: [
-                './spec/'+argsInfo+'/*.js'
+                './spec/'+argsInfo+'/_A_*.js',
+                './spec/'+argsInfo+'/_M_*.js'
             ],
             chromeOptions: {
                 'mobileEmulation': {
@@ -44,7 +46,8 @@ exports.config = {
             name: 'Chrome, small',
             browserName: 'chrome',
             specs: [
-                './spec/'+argsInfo+'/*.js'
+                './spec/'+argsInfo+'/_A_*.js',
+                './spec/'+argsInfo+'/_S_*.js'
             ],
             chromeOptions: {
                 'mobileEmulation': {
@@ -60,14 +63,16 @@ exports.config = {
             name: 'Chrome, Large',
             browserName: 'chrome',
             specs: [
-                './spec/'+argsInfo+'/*.js'
+                './spec/'+argsInfo+'/_A_*.js',
+                './spec/'+argsInfo+'/_L_*.js'
             ]
         },
         {
             name: 'Firefox',
             browserName: 'firefox',
             specs: [
-                './spec/'+argsInfo+'/*.js'
+                './spec/'+argsInfo+'/_L_*.js',
+                './spec/'+argsInfo+'/_A_*.js'
             ]
         },
     ],
