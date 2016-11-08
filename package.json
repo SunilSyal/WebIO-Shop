@@ -26,6 +26,6 @@
     "scripts": {
         "setup": "selenium-standalone install",
         "test": "./node_modules/.bin/wdio webdriver.config.js",
-        "test-large": "npm run test -- -b large -p cfto"
+        "test-large": "npm run test -- -b large -p cfto/uk"
     }
 }
