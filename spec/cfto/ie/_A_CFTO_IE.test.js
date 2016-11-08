@@ -1,4 +1,4 @@
-var cfto = require("../../common/cftoFunctions")
+var cfto = require("../../../common/cftoFunctions")
 
 describe('Testing - CFTO Ireland Site', function() {
 
@@ -15,23 +15,14 @@ describe('Testing - CFTO Ireland Site', function() {
         //Add item to the basket & land on the basket page by click on the bag button on the minibag pop-up
         cfto.addToBag();
 
-
-
-        // To choose an Ireland Store for delivery
-        browser.click('#store_4048');
-
-        // To choose collection date & slot
+        // Choose collection slot & date
         cfto.chooseCollection();
 
         // To put in the card details
         cfto.cardDetailsForm();
         cfto.userAddressForm(); // To put user address in the form
         browser.setValue('#guestemail', 'sroy@sapient.com');
-        browser.waitForEnabled('.payment-button ');
-        browser.click('.payment-button');
-        browser.click('.order-review__terms .lbl-checkbox');
-        browser.waitForEnabled('input[type="submit"]');
-        browser.click('input[type="submit"]');
+        cfto.paymentReviewOrder(); // To confirm payment & review order
         expect(browser.element('.order-confirm-msg__content .order-confirm-msg__keyword').getText()).to.contain('501');
     });
 
@@ -45,20 +36,13 @@ describe('Testing - CFTO Ireland Site', function() {
         //Add item to the basket & land on the basket page by click on the bag button on the minibag pop-up
         cfto.addToBag();
 
-        // To choose an Ireland Store for delivery
-        browser.click('#store_4048');
-
         // To choose collection date & slot
         cfto.chooseCollection();
 
         // To put in the card details
         cfto.cardDetailsForm();
         cfto.userAddressForm(); // To put user address in the form
-        browser.waitForEnabled('.payment-button ');
-        browser.click('.payment-button');
-        browser.click('.order-review__terms .lbl-checkbox');
-        browser.waitForEnabled('input[type="submit"]');
-        browser.click('input[type="submit"]');
+        cfto.paymentReviewOrder(); // To confirm payment & review order
         expect(browser.element('.order-confirm-msg__content .order-confirm-msg__keyword').getText()).to.contain('501');
     });
 
@@ -73,15 +57,14 @@ describe('Testing - CFTO Ireland Site', function() {
         //Add perfect partner product from the carousel on the basket page
         browser.moveToObject('.footer__message');
         var ex = browser.getText('.title');
-        var ey = ex.splice(3);
-        var ez = ex.slice(-3, 1); //It shows the name of the first perfect partner in the carousel
+        var productName = ex[0]; // This gives the name of the first product
 
 
         browser.click('.add-to-bag__btn');
         var ab = browser.getText('.product-item__link:nth-of-type(1)');
-        var bc = ex.slice(-3, 1); //It shows the name of the perfect partner product added to the basket
+        var productNameFinal = ab[0]; //It shows the name of the perfect partner product added to the basket
 
         // This checks whether the product from perfect partners carousel gets added to the basket & its same as first item in carousel
-        expect(ez).to.be.equal(bc);
+        expect(productNameFinal).to.be.equal(productName);
     });
 });

@@ -1,4 +1,4 @@
-var cfto = require("../../common/cftoFunctions")
+var cfto = require("../../../common/cftoFunctions")
 
 describe('Testing - CFTO UK Site', function() {
 
@@ -68,14 +68,10 @@ describe('Testing - CFTO UK Site', function() {
 
         // To put in the card details
         cfto.cardDetailsForm();
-        browser.click('.billing-form .payment__manual-link');
+        browser.click('.billing-form .payment__manual-link'); // To enter the address details manually
         cfto.userAddressForm(); // To put user address in the form
         browser.setValue('#guestemail', 'sroy@sapient.com');
-        browser.waitForEnabled('.payment-button ');
-        browser.click('.payment-button');
-        browser.click('.order-review__terms .lbl-checkbox');
-        browser.waitForEnabled('input[type="submit"]');
-        browser.click('input[type="submit"]');
+        cfto.paymentReviewOrder(); // To confirm payment & review order
         expect(browser.element('.order-confirm-msg__content .order-confirm-msg__keyword').getText()).to.contain('401');
     });
 
@@ -99,13 +95,9 @@ describe('Testing - CFTO UK Site', function() {
 
         // To put in the card details
         cfto.cardDetailsForm();
-        browser.click('.billing-form .payment__manual-link');
+        browser.click('.billing-form .payment__manual-link'); // To enter the address details manually
         cfto.userAddressForm(); // To put user address in the form
-        browser.waitForEnabled('.payment-button ');
-        browser.click('.payment-button');
-        browser.click('.order-review__terms .lbl-checkbox');
-        browser.waitForEnabled('input[type="submit"]');
-        browser.click('input[type="submit"]');
+        cfto.paymentReviewOrder(); // To confirm payment & review order
         expect(browser.element('.order-confirm-msg__content .order-confirm-msg__keyword').getText()).to.contain('401');
     });
 
@@ -120,15 +112,14 @@ describe('Testing - CFTO UK Site', function() {
         //Add perfect partner product from the carousel on the basket page
         browser.moveToObject('.footer__message');
         var ex = browser.getText('.title');
-        var ey = ex.splice(3);
-        var ez = ex.slice(-3, 1); //It shows the name of the first perfect partner in the carousel
+        var productName = ex[0]; // This gives the name of the first product
 
 
-        browser.click('.add-to-bag__btn');
+        browser.click('.add-to-bag__btn'); // Add the product to the basket
         var ab = browser.getText('.product-item__link:nth-of-type(1)');
-        var bc = ex.slice(-3, 1); //It shows the name of the perfect partner product added to the basket
+        var productNameFinal = ab[0]; //It shows the name of the perfect partner product added to the basket
 
         // This checks whether the product from perfect partners carousel gets added to the basket & its same as first item in carousel
-        expect(ez).to.be.equal(bc);
+        expect(productNameFinal).to.be.equal(productName);
     });
 });

@@ -5,7 +5,8 @@ module.exports = {
     chooseCollection: chooseCollection,
     cardDetailsLightBox: cardDetailsLightBox,
     cardDetailsForm: cardDetailsForm,
-    userAddressForm: userAddressForm
+    userAddressForm: userAddressForm,
+    paymentReviewOrder: paymentReviewOrder
 };
 
 function addToBag() {
@@ -32,7 +33,8 @@ function search() { // Function to perform search operation on CFTO site
 function chooseCollection() {
 
     //Confirm the selected store from the store list
-    browser.click('.btn--primary');
+    browser.click('form .collection--store-list__store:nth-child(3)');
+    browser.click('.collection--store-list--menu .btn--primary');
 
     //Confirm the store selection date
     browser.click('.btn--primary');
@@ -41,7 +43,7 @@ function chooseCollection() {
     browser.click('.collection-continue .btn--primary');
 
     //Click to confirm the choosen collection slot data & move-on to payment page
-    browser.click('.collection--summary__btn');
+    browser.click('.collection-summary__continue');
 }
 
 function cardDetailsLightBox() {
@@ -69,4 +71,12 @@ function userAddressForm() {
     browser.setValue('.billing-form #city', 'London');
     browser.setValue('.billing-form #zipCode', 'E20 1BF');
     browser.setValue('#guestemail', 'sroy@sapient.com');
+}
+
+function paymentReviewOrder() {
+    browser.waitForEnabled('.payment-button ');
+    browser.click('.payment-button');
+    browser.click('.order-review__terms .lbl-checkbox');
+    browser.waitForEnabled('input[type="submit"]');
+    browser.click('input[type="submit"]');
 }
