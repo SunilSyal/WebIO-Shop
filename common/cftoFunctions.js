@@ -33,17 +33,19 @@ function search() { // Function to perform search operation on CFTO site
 function chooseCollection() {
 
     //Confirm the selected store from the store list
-    browser.click('form .collection--store-list__store:nth-child(3)');
+    browser.click('.collection--store-list__store--closest');
     browser.click('.collection--store-list--menu .btn--primary');
 
     //Confirm the store selection date
+    browser.click('.collection--slots-list__item--suggested');
     browser.click('.btn--primary');
 
     //Select the store selection time slot
+    browser.click('.collection--slots-list__item:nth-child(1)');
     browser.click('.collection-continue .btn--primary');
 
     //Click to confirm the choosen collection slot data & move-on to payment page
-    browser.click('.collection-summary__continue');
+    browser.click('.collection-continue .btn--primary');
 }
 
 function cardDetailsLightBox() {
