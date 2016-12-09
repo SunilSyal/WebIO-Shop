@@ -15,8 +15,8 @@ function signIn() {
     browser.click('.btn--north-primary');
 
     //Entering Login details
-    browser.setValue('#email', 'aroraneha.16@gmail.com');
-    browser.setValue('#password', 'wcs12345');
+    browser.setValue('#email', 'jshubham007@gmail.com');
+    browser.setValue('#password', 'testing@12345');
 
     browser.scroll('#email');
     //Clicking Submit button
