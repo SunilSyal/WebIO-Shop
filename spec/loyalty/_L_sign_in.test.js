@@ -41,7 +41,6 @@ describe('Sparks Sign In Journey', function() {
         browser.waitForVisible('div[ui-view] .account__home-date');
         expect(browser.getText('div[ui-view] .account__home-date')).to.contain('JOINED');
 
-        //browser.scroll('.large-banner--account + .container');
         browser.click('button[href="#/account/charity"]');
 
         browser.waitForVisible('div[ui-view] .account__charity--details-heading')
