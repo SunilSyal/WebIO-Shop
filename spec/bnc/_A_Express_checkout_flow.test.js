@@ -1,7 +1,7 @@
-describe.only('Wine Sub Checkout', function() {
+describe('Wine Sub Checkout', function() {
 
     beforeEach(function() {
-        browser.url('http://www.sit2.marksandspencer.com/');
+        browser.url('http://www.marksandspencer.com/');
     })
 
     it('Should not display guest checkout option with wine sub in basket', function() {
@@ -25,5 +25,7 @@ describe.only('Wine Sub Checkout', function() {
         browser.setValue('#cvv', '234');
         browser.moveToObject('.terms-and-conditions-right-col .btn--primary');
         browser.click('.terms-and-conditions-right-col .btn--primary');
+        browser.waitUntil(1000);
+        expect(browser.getTitle()).contain('Order Confirm');
     });
 });
