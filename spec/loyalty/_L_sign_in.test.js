@@ -3,7 +3,7 @@ var loyalty = require("../../common/loyaltyFunctions")
 describe('Sparks Sign In Journey', function() {
 
     beforeEach(function() {
-        browser.url('http://marksandspencer.com');
+        browser.url(domainName + '/');
     })
 
 

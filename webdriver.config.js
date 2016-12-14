@@ -1,5 +1,6 @@
 var specs = require('./specs');
 var specArr = specs.getSpecs(process.argv);
+global.domainName = "http://www.marksandspencer.com";
 
 var argsInfo = 'Page:: ' + specs.fnGetArgValue(process.argv, '-p') + ', Breakpoint:: ' + specs.fnGetArgValue(process.argv, '-b');
 

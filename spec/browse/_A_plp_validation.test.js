@@ -1,7 +1,7 @@
 describe.only('Browse PLP Validations', function() {
 
     beforeEach(function() {
-        browser.url('http://www.marksandspencer.com/');
+        browser.url(domainName + '/');
     })
 
 
