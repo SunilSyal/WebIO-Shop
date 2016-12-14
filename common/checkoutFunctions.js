@@ -33,9 +33,9 @@ browser.setValue('#postcode', 'E201BA');
 }
 
 function postcodeSearch() {
-  browser.click('.btn.btn--primary.btn--find-address');
+  browser.click('.btn--find-address');
   browser.waitForVisible('ul.scrollable-list');
-  browser.moveToObject('a.scrollable-list__item.ng-binding.scrollable-list__item-odd');
-  browser.click('a.scrollable-list__item.ng-binding.scrollable-list__item-odd');
+  browser.moveToObject('a.scrollable-list__item');
+  browser.click('a.scrollable-list__item');
   browser.waitForVisible('#city');
 }

@@ -4,7 +4,7 @@ var checkout = require("../../common/checkoutFunctions")
 
 describe('Add address on DMS', function() {
     beforeEach(function() {
-        browser.url('http://www.marksandspencer.com/');
+        browser.url(domainName + '/');
     })
 
     it('Should add address on DMS page', function() {
@@ -26,8 +26,7 @@ describe('Add address on DMS', function() {
 
         browser.moveToObject('.address-overlay__hr .address-overlay__btn--primary');
         browser.click('.address-overlay__hr .address-overlay__btn--primary');
-        //browser.waitUntil(10000);
-        browser.isVisible('.inpage-msg.inpage-msg--success');
+        browser.isVisible('.inpage-msg--success');
         browser.waitForVisible('.delivery-mode__address');
         expect(browser.getText('.delivery-mode__address')).contain('LONDON');
     });
