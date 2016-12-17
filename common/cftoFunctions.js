@@ -1,3 +1,5 @@
+var cftoLoc = require("../resources/cftoLocator")
+
 module.exports = {
     addToBag: addToBag,
     logIn: logIn,
@@ -10,75 +12,75 @@ module.exports = {
 };
 
 function addToBag() {
-    browser.click('.add-to-bag__btn');
-    browser.waitForVisible('script + .minibag-container');
-    browser.click('script + .minibag-container .minibag-summary__button');
-    browser.click('button[data-analyticsfunction="analyticsCheckoutButtonClicked"]');
+    browser.click(cftoLoc.addToBag);
+    browser.waitForVisible(cftoLoc.miniBagContainer);
+    browser.click(cftoLoc.miniBag);
+    browser.click(cftoLoc.checkoutButton);
 }
 
 function logIn() // Function to provide Login Information
 {
-    browser.setValue('#loginEmail', 'sroy@sapient.com');
-    browser.setValue('#loginPassword', 'welcome1');
-    browser.waitForEnabled('.my-account__subcontent__signIn-btn');
-    browser.click('.my-account__subcontent__signIn-btn');
+    browser.setValue(cftoLoc.email, 'sroy@sapient.com');
+    browser.setValue(cftoLoc.password, 'welcome1');
+    browser.waitForEnabled(cftoLoc.signIn);
+    browser.click(cftoLoc.signIn);
 }
 
 function search() { // Function to perform search operation on CFTO site
-    browser.scroll('.search-component__input', 'Turkey');
-    browser.setValue('.search-component__input', 'Turkey');
-    browser.click('.search-component__btn');
+    browser.scroll(cftoLoc.globalSearch, 'Turkey');
+    browser.setValue(cftoLoc.globalSearch, 'Turkey');
+    browser.click(cftoLoc.globalSearchButton);
 }
 
 function chooseCollection() {
 
     //Confirm the selected store from the store list
-    browser.click('.collection--store-list__store--closest');
-    browser.click('.collection--store-list--menu .btn--primary');
+    browser.click(cftoLoc.collectionStoreList);
+    browser.click(cftoLoc.collectionButton);
 
     //Confirm the store selection date
-    browser.click('.collection--slots-list__item--suggested');
-    browser.click('.btn--primary');
+    browser.click(cftoLoc.collectionDateSelect);
+    browser.click(cftoLoc.collectionDateConfirm);
 
     //Select the store selection time slot
-    browser.click('.collection--slots-list__item:nth-child(1)');
-    browser.click('.collection-continue .btn--primary');
+    browser.click(cftoLoc.collectionTimeSlot);
+    browser.click(cftoLoc.collectionTimeConfirm);
 
     //Click to confirm the choosen collection slot data & move-on to payment page
-    browser.click('.collection-continue .btn--primary');
+    browser.click(cftoLoc.confirmCollection);
 }
 
 function cardDetailsLightBox() {
-    browser.selectByValue('select[name="cardType"]', '11105_Mastercard');
-    browser.setValue('#account', '5454609899026213');
-    browser.setValue('#expiryMonth', '02');
-    browser.setValue('#expiryYear', '18');
-    browser.setValue('div[ng-form="paymentDetailsCtrl.form"] #cvv', '215');
+    browser.selectByValue(cftoLoc.selectCardType, '11105_Mastercard');
+    browser.setValue(cftoLoc.enterCardNumber, '5105105105105100');
+    browser.setValue(cftoLoc.selectExpiryMonth, '02');
+    browser.setValue(cftoLoc.selectExpiryYear, '18');
+    browser.setValue(cftoLoc.enterCardCvv, '609');
 }
 
 function cardDetailsForm() {
-    browser.selectByValue('select[name="cardType"]', '11105_Mastercard');
-    browser.setValue('.payment-method #account', '5454609899026213');
-    browser.setValue('.payment-method #expiryMonth', '02');
-    browser.setValue('.payment-method #expiryYear', '18');
-    browser.setValue('.payment-method #cvv', '215');
+    browser.selectByValue(cftoLoc.selectCardType, '11105_Mastercard');
+    browser.setValue(cftoLoc.enterCardNumberForm, '5454609899026213');
+    browser.setValue(cftoLoc.selectExpiryMonthForm, '02');
+    browser.setValue(cftoLoc.selectExpiryYearForm, '18');
+    browser.setValue(cftoLoc.enterCardCvvForm, '215');
 }
 
 function userAddressForm() {
-    browser.selectByValue('.billing-form #personTitle', 'Mr');
-    browser.setValue('.billing-form #firstName', 'Sumit');
-    browser.setValue('.billing-form #lastName', 'Roy');
-    browser.setValue('.billing-form #phone1', '07459686444');
-    browser.setValue('.billing-form #address1', '23, Egremont House');
-    browser.setValue('.billing-form #city', 'London');
-    browser.setValue('.billing-form #zipCode', 'E20 1BF');
-    browser.setValue('#guestemail', 'sroy@sapient.com');
+    browser.selectByValue(cftoLoc.selectTitle, 'Mr');
+    browser.setValue(cftoLoc.firstName, 'Sumit');
+    browser.setValue(cftoLoc.lastName, 'Roy');
+    browser.setValue(cftoLoc.phoneNumber, '07459686444');
+    browser.setValue(cftoLoc.address1, '23, Egremont House');
+    browser.setValue(cftoLoc.city, 'London');
+    browser.setValue(cftoLoc.postCode, 'E20 1BF');
+    browser.setValue(cftoLoc.emailId, 'sroy@sapient.com');
 }
 
 function paymentReviewOrder() {
-    browser.waitForEnabled('.payment-button ');
-    browser.click('.payment-button');
-    browser.click('.order-review__terms .lbl-checkbox');
-    browser.waitForEnabled('input[type="submit"]');
-    browser.click('input[type="submit"]');
+    browser.waitForEnabled(cftoLoc.confirmPayment);
+    browser.click(cftoLoc.confirmPayment);
+    browser.click(cftoLoc.termsAndConditions);
+    browser.waitForEnabled(cftoLoc.confirmOrder);
+    browser.click(cftoLoc.confirmOrder);
 }
