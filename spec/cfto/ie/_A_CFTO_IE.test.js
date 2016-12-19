@@ -10,7 +10,7 @@ describe('Testing - CFTO Ireland Site', function() {
     });
 
 
-    it.only('Place a CFTO order on the Ireland Site', function() {
+    it('Place a CFTO order on the Ireland Site', function() {
         this.timeout(0);
 
         //Add item to the basket & land on the basket page by click on the bag button on the minibag pop-up
