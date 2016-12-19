@@ -1,4 +1,5 @@
 var cfto = require("../../../common/cftoFunctions")
+var cftoLoc = require("../../../resources/cftoLocator")
 
 describe('Testing - CFTO UK Site', function() {
 
@@ -23,30 +24,30 @@ describe('Testing - CFTO UK Site', function() {
         // Function to login the user
         cfto.logIn();
 
-        browser.click('button[data-analyticsfunction="analyticsCheckoutButtonClicked"]'); // This will appear in case of basket merge scenario
+        browser.click(cftoLoc.checkoutButton); // This will appear in case of basket merge scenario
 
         // To choose an UK Store for delivery
-        browser.setValue('.collection--store-finder__search-form__input', 'Covent Garden');
-        browser.click('.collection--store-finder__search-form__btn');
+        browser.setValue(cftoLoc.collectionStoreSearchUK, 'Covent Garden');
+        browser.click(cftoLoc.storeSearchUK);
 
         // To choose collection date & slot
         cfto.chooseCollection();
 
         // Add a new card from payment page
-        browser.click('#add-card-btn-inline');
+        browser.click(cftoLoc.addNewCard);
         cfto.cardDetailsLightBox(); // To put in the card details
-        browser.click('button[data-element="AddCardAddressOverlay"]');
-        browser.waitForVisible('#address-details__add');
-        browser.click('#address-details__add');
-        browser.waitForVisible('.payment-button');
-        browser.setValue('.credit-debit-card-form #cvv', '215');
-        browser.click('.payment-button');
+        browser.click(cftoLoc.continueToAddress);
+        browser.waitForVisible(cftoLoc.addCardAddress);
+        browser.click(cftoLoc.addCardAddress);
+        browser.waitForVisible(cftoLoc.confirmPayment);
+        browser.setValue(cftoLoc.enterCvv, '609');
+        browser.click(cftoLoc.confirmPayment);
 
         // Confirm the order by clicking on the place order button
-        browser.click('input[type="submit"]');
+        browser.click(cftoLoc.confirmOrder);
 
         //Confirming the details on the order confirmation page
-        expect(browser.element('.order-confirm-msg__content .order-confirm-msg__keyword').getText()).to.contain('401');
+        expect(browser.element(cftoLoc.orderNumber).getText()).to.contain('401');
     });
 
 
@@ -57,22 +58,22 @@ describe('Testing - CFTO UK Site', function() {
         cfto.addToBag();
 
         // Choose guest checkout option on the checkout login page
-        browser.click('#guestCheckoutContButton');
+        browser.click(cftoLoc.guestCheckoutButton);
 
         // To choose an UK Store for delivery
-        browser.setValue('.collection--store-finder__search-form__input', 'Covent Garden');
-        browser.click('.collection--store-finder__search-form__btn');
+        browser.setValue(cftoLoc.collectionStoreSearchUK, 'Covent Garden');
+        browser.click(cftoLoc.storeSearchUK);
 
         // To choose collection date & slot
         cfto.chooseCollection();
 
         // To put in the card details
         cfto.cardDetailsForm();
-        browser.click('.billing-form .payment__manual-link'); // To enter the address details manually
+        browser.click(cftoLoc.enterAddressManually); // To enter the address details manually
         cfto.userAddressForm(); // To put user address in the form
-        browser.setValue('#guestemail', 'sroy@sapient.com');
+        browser.setValue(cftoLoc.emailId, 'sroy@sapient.com');
         cfto.paymentReviewOrder(); // To confirm payment & review order
-        expect(browser.element('.order-confirm-msg__content .order-confirm-msg__keyword').getText()).to.contain('401');
+        expect(browser.element(cftoLoc.orderNumber).getText()).to.contain('401');
     });
 
     it('Place an UK CFTO order with guest user by searching product using global seacrh', function() {
@@ -83,40 +84,40 @@ describe('Testing - CFTO UK Site', function() {
         cfto.addToBag();
 
         //Choose guest checkout option on the checkout login page
-        browser.click('#guestCheckoutContButton');
+        browser.click(cftoLoc.guestCheckoutButton);
 
 
         // To choose an UK Store for delivery
-        browser.setValue('.collection--store-finder__search-form__input', 'Covent Garden');
-        browser.click('.collection--store-finder__search-form__btn');
+        browser.setValue(cftoLoc.collectionStoreSearchUK, 'Covent Garden');
+        browser.click(cftoLoc.storeSearchUK);
 
         // To choose collection date & slot
         cfto.chooseCollection();
 
         // To put in the card details
         cfto.cardDetailsForm();
-        browser.click('.billing-form .payment__manual-link'); // To enter the address details manually
+        browser.click(cftoLoc.enterAddressManually); // To enter the address details manually
         cfto.userAddressForm(); // To put user address in the form
         cfto.paymentReviewOrder(); // To confirm payment & review order
-        expect(browser.element('.order-confirm-msg__content .order-confirm-msg__keyword').getText()).to.contain('401');
+        expect(browser.element(cftoLoc.orderNumber).getText()).to.contain('401');
     });
 
     it('Validate the perfect partner gets added to the basket and the same item gets displayed on the basket', function() {
         this.timeout(0);
 
         //Add item to the basket & land on the basket page by click on the bag button on the minibag pop-up
-        browser.click('.add-to-bag__btn');
-        browser.waitForVisible('script + .minibag-container');
-        browser.click('script + .minibag-container .minibag-summary__button');
+        browser.click(cftoLoc.addToBag);
+        browser.waitForVisible(cftoLoc.miniBagContainer);
+        browser.click(cftoLoc.miniBag);
 
-        //Add perfect partner product from the carousel on the basket page
-        browser.moveToObject('.footer__message');
-        var ex = browser.getText('.title');
+        //Add perfect partner promoveToFooterduct from the carousel on the basket page
+        browser.moveToObject(cftoLoc.moveToFooter);
+        var ex = browser.getText(cftoLoc.perfectPartnumberProductTitle);
         var productName = ex[0]; // This gives the name of the first product
 
 
-        browser.click('.add-to-bag__btn'); // Add the product to the basket
-        var ab = browser.getText('.product-item__link:nth-of-type(1)');
+        browser.click(cftoLoc.addToBag); // Add the product to the basket
+        var ab = browser.getText(cftoLoc.firstBasketItem);
         var productNameFinal = ab[0]; //It shows the name of the perfect partner product added to the basket
 
         // This checks whether the product from perfect partners carousel gets added to the basket & its same as first item in carousel
