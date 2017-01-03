@@ -1,4 +1,4 @@
-var search = require("../../common/searchFunctions")
+var search = require("../../common/browseFunctions")
 var miniBag = require("../../common/miniBagFunctions")
 var checkout = require("../../common/checkoutFunctions")
 
@@ -10,12 +10,9 @@ describe('Add address on DMS', function() {
     it('Should add address on DMS page', function() {
         this.timeout(0);
         expect(browser.getTitle()).contain('Welcome to Marks');
-        search.searchProductOnMainPage('p22249446');
+        search.searchProductOnMainPage('p22151415');
 
-        browser.waitForVisible('#product-detail-page');
-        browser.moveToObject('input.basket');
-        browser.click('input.basket');
-        browser.waitForVisible('.bagNotify');
+        search.pdpAtb();
 
         miniBag.miniBagCheckout();
         checkout.guestCheckout();
@@ -24,10 +21,8 @@ describe('Add address on DMS', function() {
         checkout.addAddressFields();
         checkout.postcodeSearch();
 
-        browser.moveToObject('.address-overlay__hr .address-overlay__btn--primary');
-        browser.click('.address-overlay__hr .address-overlay__btn--primary');
-        browser.isVisible('.inpage-msg--success');
-        browser.waitForVisible('.delivery-mode__address');
+        checkout.addressAdded();
         expect(browser.getText('.delivery-mode__address')).contain('LONDON');
+
     });
 });
