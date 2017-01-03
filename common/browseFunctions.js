@@ -15,21 +15,21 @@ function searchProductOnMainPage(productID) {
 }
 
 // No colour No Size Non FEAR ATB
-function pdpAtb(){
-browser.waitForVisible(browseLoc.pdpOpen);
-browser.moveToObject(browseLoc.atbButton);
-browser.click(browseLoc.atbButton);
-browser.waitForVisible(browseLoc.addedToBagOverlay);
+function pdpAtb() {
+    browser.waitForVisible(browseLoc.pdpOpen);
+    browser.moveToObject(browseLoc.atbButton);
+    browser.click(browseLoc.atbButton);
+    browser.waitForVisible(browseLoc.addedToBagOverlay);
 }
 
-function WineSubAtb(){
-  browser.moveToObject(browseLoc.topNavMoveToFoodL1Link);
-  browser.waitForVisible(browseLoc.wineSubLinkTopNav);
-  browser.moveToObject(browseLoc.wineSubLinkTopNav);
-  browser.click(browseLoc.wineSubLinkTopNav);
-  browser.click(browseLoc.wineClubClassicLink);
-  browser.scroll(browseLoc.wineClubAddToBag);
-  browser.click(browseLoc.wineClubAddToBag);
-  browser.waitForVisible(browseLoc.addedToBagOverlay);
+function WineSubAtb() {
+    browser.moveToObject(browseLoc.topNavMoveToFoodL1Link);
+    browser.waitForVisible(browseLoc.wineSubLinkTopNav);
+    browser.moveToObject(browseLoc.wineSubLinkTopNav);
+    browser.click(browseLoc.wineSubLinkTopNav);
+    browser.click(browseLoc.wineClubClassicLink);
+    browser.scroll(browseLoc.wineClubAddToBag);
+    browser.click(browseLoc.wineClubAddToBag);
+    browser.waitForVisible(browseLoc.addedToBagOverlay);
 
 }
