@@ -16,7 +16,7 @@ describe('Add address on DMS', function() {
         search.searchProductOnMainPage('p22151415');
 
         //Add product to bag from PDP
-        search.pdpAddtoBag();
+        search.pdpAddToBag();
 
         miniBag.miniBagCheckout();
         checkout.guestCheckout();

@@ -18,7 +18,7 @@ describe('Bnc Sanity Scenario', function() {
         search.searchProductOnMainPage('p22151415');
 
         // Add to bag from PDP
-        search.pdpAddtoBag();
+        search.pdpAddToBag();
 
         //Checout from mini bag
         miniBag.miniBagCheckout();
@@ -51,7 +51,7 @@ describe('Bnc Sanity Scenario', function() {
         search.searchProductOnMainPage('22151415');
 
         //Add product to bag from PDP
-        search.pdpAddtoBag();
+        search.pdpAddToBag();
 
         //checkout using Mini bag
         miniBag.miniBagCheckout();

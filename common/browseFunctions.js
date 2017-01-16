@@ -1,7 +1,7 @@
 var browseLoc = require("../resources/browseLocator")
 module.exports = {
     searchProductOnMainPage: searchProductOnMainPage,
-    pdpAddtoBag: pdpAddtoBag,
+    pdpAddToBag: pdpAddToBag,
     WineSubAddToBag: WineSubAddToBag
 };
 
@@ -15,7 +15,7 @@ function searchProductOnMainPage(productID) {
 }
 
 // No colour No Size Non FEAR Add to bag
-function pdpAddtoBag() {
+function pdpAddToBag() {
     browser.waitForVisible(browseLoc.pdpOpen);
     browser.moveToObject(browseLoc.atbButton);
     browser.click(browseLoc.atbButton);
