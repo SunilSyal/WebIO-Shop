@@ -7,8 +7,8 @@ module.exports = {
 
 
     //checkoutLogin
-    emailId: '#loginEmail',
-    password: '#loginPassword',
+    existingEmailId: '#loginEmail',
+    enterPassword: '#loginPassword',
     login: '.my-account__subcontent__signIn-btn',
 
     //guestCheckout
@@ -63,7 +63,52 @@ module.exports = {
 
     //Express checkout
     securityNum: '#cvv',
-    placeOrderSpc: '.terms-and-conditions-right-col .btn--primary'
+    placeOrderSpc: '.terms-and-conditions-right-col .btn--primary',
 
+    //Checkout Registration
+    scrollToFooter: 'footer',
+    registerLink: '.my-account a[href*="/webapp/wcs/stores/servlet/MSResUserRegistration"]',
+    registrationPageOpen: '.form--content',
+    selectTitle: '#registerTitle',
+    fName: '#registerFirstName',
+    lName: '#registerLastName',
+    emailId: '#registerEmail',
+    password: '#registerPassword',
+    retypePassword: '#registerConfirmPassword',
+    createAccount: '.btn--active',
 
+    //Add store dms
+    addStoreButton: '.delivery-mode__item__store .btn--primary',
+    storeFinderSearch: '#storeFinderSearch',
+    findButton: '#storeFinderFindButton',
+    storeResults: '.store-finder__listview',
+    selectStore: '.store-item__select-btn',
+    calendarDisplay: '.calendar__table',
+    selectDate: '.calendar__col__link',
+    confirmDateSelection: '.select-date .btn--primary',
+    addedStoreDisplay: '.delivery-mode__item__store .delivery-mode__address',
+    selectedDateDisplay: '.delivery-mode__detail .delivery-date',
+    storeOverlayClosed: '.lightbox__inner',
+
+    // Apply GC/LRV -Combined Fields
+    gcLrvAccordianOpen: '.acc-container',
+    promoAccordian: '#promoContainer',
+    entryField: '.voucher-entry',
+    enterPin: '.pin-container',
+    applyButton: '.voucher-entry .btn--secondary',
+    gcApplied: '.voucher-results',
+
+    //Apply GC/LRV
+    gcAccordianOpen: 'script + .border-top--lgt:nth-of-type(2)',
+    gcGiftCardForm: '.gift-card__form',
+    giftCardEntry1: '#giftCardNumber1',
+    giftCardEntry2: '[name=giftCardNumber2]',
+    giftCardEntry3: '[name=giftCardNumber3]',
+    giftCardEntry4: '[name=giftCardNumber4]',
+    giftCardPin: '#giftCardPin',
+    apply: '.gift-card__form .btn--secondary',
+    giftCardApplied: '.pre-paid-applied--gift-card',
+
+    //Contact Details Page
+    continueButton: '.btn--primary.payment-button',
 };

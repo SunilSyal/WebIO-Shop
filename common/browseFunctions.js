@@ -1,8 +1,8 @@
 var browseLoc = require("../resources/browseLocator")
 module.exports = {
     searchProductOnMainPage: searchProductOnMainPage,
-    pdpAtb: pdpAtb,
-    WineSubAtb: WineSubAtb
+    pdpAddToBag: pdpAddToBag,
+    WineSubAddToBag: WineSubAddToBag
 };
 
 function searchProductOnMainPage(productID) {
@@ -14,15 +14,15 @@ function searchProductOnMainPage(productID) {
     browser.click(browseLoc.goButton);
 }
 
-// No colour No Size Non FEAR ATB
-function pdpAtb() {
+// No colour No Size Non FEAR Add to bag
+function pdpAddToBag() {
     browser.waitForVisible(browseLoc.pdpOpen);
     browser.moveToObject(browseLoc.atbButton);
     browser.click(browseLoc.atbButton);
     browser.waitForVisible(browseLoc.addedToBagOverlay);
 }
 
-function WineSubAtb() {
+function WineSubAddToBag() {
     browser.moveToObject(browseLoc.topNavMoveToFoodL1Link);
     browser.waitForVisible(browseLoc.wineSubLinkTopNav);
     browser.moveToObject(browseLoc.wineSubLinkTopNav);

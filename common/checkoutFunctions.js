@@ -1,4 +1,5 @@
 var checkoutLoc = require("../resources/checkoutLocator")
+var userSuffix = Date.now();
 
 module.exports = {
     checkoutLogin: checkoutLogin,
@@ -12,13 +13,17 @@ module.exports = {
     guestEmail: guestEmail,
     orderReview: orderReview,
     placeOrder: placeOrder,
-    expressCheckout: expressCheckout
+    expressCheckout: expressCheckout,
+    checkoutRegistration: checkoutRegistration,
+    addStoreDMS: addStoreDMS,
+    payByVoucher: payByVoucher,
+    giftCardApply: giftCardApply
 
 };
 
 function checkoutLogin() {
-    browser.setValue(checkoutLoc.emailId, 'test5@gmail.com');
-    browser.setValue(checkoutLoc.password, 'testing@123');
+    browser.setValue(checkoutLoc.existingEmailId, 'test5@gmail.com');
+    browser.setValue(checkoutLoc.enterPassword, 'testing@123');
     browser.click(checkoutLoc.login);
 }
 
@@ -59,6 +64,7 @@ function addressAdded() {
 }
 
 function payment() {
+    browser.moveToObject(checkoutLoc.continueToPayment);
     browser.click(checkoutLoc.continueToPayment);
     browser.waitForVisible(checkoutLoc.paymentPageOpen);
 
@@ -78,12 +84,13 @@ function guestEmail() {
 }
 
 function orderReview() {
+    browser.moveToObject(checkoutLoc.scrollToFooter);
     browser.click(checkoutLoc.continueToOrderReview);
-    browser.waitForVisible(checkoutLoc.orderReviewPageOpen);
-    browser.click(checkoutLoc.orderReviewTandC);
 }
 
 function placeOrder() {
+    browser.waitForVisible(checkoutLoc.orderReviewPageOpen);
+    browser.click(checkoutLoc.orderReviewTandC);
     browser.click(checkoutLoc.placeOrderButton);
     browser.waitForVisible(checkoutLoc.orderConfirmPageOpen);
 }
@@ -93,4 +100,53 @@ function expressCheckout() {
     browser.moveToObject(checkoutLoc.placeOrderSpc);
     browser.click(checkoutLoc.placeOrderSpc);
     browser.waitForVisible(checkoutLoc.orderConfirmPageOpen);
+}
+
+function checkoutRegistration() {
+    browser.moveToObject(checkoutLoc.scrollToFooter);
+    browser.click(checkoutLoc.registerLink);
+    browser.waitForVisible(checkoutLoc.registrationPageOpen);
+    browser.selectByValue(checkoutLoc.selectTitle, 'Ms');
+    browser.setValue(checkoutLoc.fName, 'Test');
+    browser.setValue(checkoutLoc.lName, 'User');
+    browser.setValue(checkoutLoc.emailId, 'test' + userSuffix + '@gmail.com');
+    browser.setValue(checkoutLoc.password, 'testing@123');
+    browser.setValue(checkoutLoc.retypePassword, 'testing@123');
+    browser.moveToObject(checkoutLoc.scrollToFooter);
+    browser.click(checkoutLoc.createAccount);
+}
+
+function addStoreDMS(cityName) {
+    browser.click(checkoutLoc.addStoreButton);
+    browser.waitForVisible(checkoutLoc.storeFinderSearch);
+    browser.setValue(checkoutLoc.storeFinderSearch, cityName);
+    browser.click(checkoutLoc.findButton);
+    browser.waitForVisible(checkoutLoc.storeResults);
+    browser.click(checkoutLoc.selectStore);
+    browser.waitForVisible(checkoutLoc.calendarDisplay);
+    browser.click(checkoutLoc.selectDate);
+    browser.click(checkoutLoc.confirmDateSelection);
+    browser.waitForVisible(checkoutLoc.storeOverlayClosed, 10000, true);
+    browser.waitForVisible(checkoutLoc.addedStoreDisplay, 30000);
+    browser.isVisible(checkoutLoc.selectedDateDisplay);
+}
+
+function payByVoucher() {
+    browser.click(checkoutLoc.gcLrvAccordianOpen);
+    browser.setValue(checkoutLoc.entryField, '9988995100023017');
+    browser.setValue(checkoutLoc.enterPin, '83533');
+    browser.click(checkoutLoc.applyButton);
+    browser.waitForVisible(checkoutLoc.gcApplied);
+}
+
+function giftCardApply() {
+    browser.click(checkoutLoc.gcAccordianOpen);
+    browser.moveToObject(checkoutLoc.promoAccordian);
+    browser.setValue(checkoutLoc.giftCardEntry1, '9988');
+    browser.setValue(checkoutLoc.giftCardEntry2, '9951');
+    browser.setValue(checkoutLoc.giftCardEntry3, '0002');
+    browser.setValue(checkoutLoc.giftCardEntry4, '3017');
+    browser.setValue(checkoutLoc.giftCardPin, '83533');
+    browser.click(checkoutLoc.apply);
+    browser.waitForVisible(checkoutLoc.giftCardApplied);
 }
