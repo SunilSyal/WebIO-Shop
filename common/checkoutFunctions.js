@@ -22,8 +22,8 @@ module.exports = {
 };
 
 function checkoutLogin() {
-    browser.setValue(checkoutLoc.emailId, 'test5@gmail.com');
-    browser.setValue(checkoutLoc.password, 'testing@123');
+    browser.setValue(checkoutLoc.existingEmailId, 'test5@gmail.com');
+    browser.setValue(checkoutLoc.enterPassword, 'testing@123');
     browser.click(checkoutLoc.login);
 }
 

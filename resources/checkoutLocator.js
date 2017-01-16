@@ -7,8 +7,8 @@ module.exports = {
 
 
     //checkoutLogin
-    emailId: '#loginEmail',
-    password: '#loginPassword',
+    existingEmailId: '#loginEmail',
+    enterPassword: '#loginPassword',
     login: '.my-account__subcontent__signIn-btn',
 
     //guestCheckout
@@ -100,6 +100,7 @@ module.exports = {
 
     //Apply GC/LRV
     gcAccordianOpen: 'script + .border-top--lgt:nth-of-type(2)',
+    gcGiftCardForm: '.gift-card__form',
     giftCardEntry1: '#giftCardNumber1',
     giftCardEntry2: '[name=giftCardNumber2]',
     giftCardEntry3: '[name=giftCardNumber3]',
