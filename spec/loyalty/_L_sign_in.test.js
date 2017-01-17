@@ -1,4 +1,5 @@
 var loyalty = require("../../common/loyaltyFunctions")
+var loyaltyLoc =require("../../resources/loyaltyLocator")
 
 describe('Sparks Sign In Journey', function() {
 
@@ -15,19 +16,19 @@ describe('Sparks Sign In Journey', function() {
         loyalty.pageVerification();
         loyalty.signIn();
 
-        browser.waitForVisible('.sticky-element .topbar__left-wrapper');
+        browser.waitForVisible(loyaltyLoc.sparksHomePage);
         expect(browser.getTitle()).to.contain('Home');
 
-        expect(browser.getText('.large-banner--faded')).to.contain('WELCOME');
-        browser.click('.sticky-element .topbar__left-wrapper');
+        expect(browser.getText(loyaltyLoc.sparksWelcome)).to.contain('Welcome');
+        browser.click(loyaltyLoc.sparksTopBar);
 
-        browser.waitForVisible('div[ui-view] .account__home-date');
-        expect(browser.getText('div[ui-view] .account__home-date')).to.contain('JOINED');
+        browser.waitForVisible(loyaltyLoc.sparksAccount);
+        expect(browser.getText(loyaltyLoc.sparksAccount)).to.contain('JOINED');
 
-        browser.click('button[href="#/account/charity"]');
+        browser.click(loyaltyLoc.sparksCharityButton);
 
-        browser.waitForVisible('div[ui-view] .account__charity--details-heading')
-        expect(browser.getText('.row .account__charity--details-heading')).to.contain('CHARITY');
+        browser.waitForVisible(loyaltyLoc.sparksCharityVisible);
+        expect(browser.getText(loyaltyLoc.sparksCharityText));
 
     });
 
