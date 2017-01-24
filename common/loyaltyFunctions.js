@@ -1,4 +1,4 @@
-var loyaltyLoc =require("../resources/loyaltyLocator")
+var loyaltyLoc = require("../resources/loyaltyLocator")
 
 module.exports = {
     pageVerification: pageVerification,
