@@ -6,7 +6,7 @@ describe('Testing - CFTO Ireland Site', function() {
     beforeEach(function(done) {
         browser.deleteCookie();
         this.timeout(0);
-        browser.url('http://christmasfood.marksandspencer.ie');
+        browser.url('http://christmasfood.sit2.marksandspencer.ie');
     });
 
 
@@ -15,6 +15,7 @@ describe('Testing - CFTO Ireland Site', function() {
 
         //Add item to the basket & land on the basket page by click on the bag button on the minibag pop-up
         cfto.addToBag();
+        browser.click(cftoLoc.checkoutButton);
 
         // Choose collection slot & date
         cfto.chooseCollection();
@@ -36,6 +37,7 @@ describe('Testing - CFTO Ireland Site', function() {
 
         //Add item to the basket & land on the basket page by click on the bag button on the minibag pop-up
         cfto.addToBag();
+        browser.click(cftoLoc.checkoutButton);
 
         // To choose collection date & slot
         cfto.chooseCollection();
@@ -51,16 +53,15 @@ describe('Testing - CFTO Ireland Site', function() {
         this.timeout(0);
 
         //Add item to the basket & land on the basket page by click on the bag button on the minibag pop-up
-        browser.click(cftoLoc.addToBag);
-        browser.waitForVisible(cftoLoc.miniBagContainer);
-        browser.click(cftoLoc.miniBag);
+        cfto.addToBag();
 
         //Add perfect partner product from the carousel on the basket page
-        browser.moveToObject(cftoLoc.moveToFooter);
+        browser.scroll(cftoLoc.moveToFooter);
+        browser.waitForVisible(cftoLoc.perfectPartnumberProductTitle);
         var ex = browser.getText(cftoLoc.perfectPartnumberProductTitle);
         var productName = ex[0]; // This gives the name of the first product
 
-
+        browser.scroll(cftoLoc.addToBag);
         browser.click(cftoLoc.addToBag);
         var ab = browser.getText(cftoLoc.firstBasketItem);
         var productNameFinal = ab[0]; //It shows the name of the perfect partner product added to the basket
