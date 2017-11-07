@@ -72,7 +72,15 @@ exports.config = {
     capabilities: capabilities[specs.fnGetArgValue(process.argv, '-b')],
 
     sync: true,
-    reporters: ['spec'],
+    reporters: ['junit','allure'],
+    reporterOptions: {
+      junit: {
+            outputDir: './'
+             },
+        allure: {
+            outputDir: 'allure-results'
+                }
+    },
 
     before: function() {
         var chai = require('chai');

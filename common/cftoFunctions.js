@@ -8,14 +8,15 @@ module.exports = {
     cardDetailsLightBox: cardDetailsLightBox,
     cardDetailsForm: cardDetailsForm,
     userAddressForm: userAddressForm,
+    enterAddressManually: enterAddressManually,
     paymentReviewOrder: paymentReviewOrder
 };
 
 function addToBag() {
+    browser.scroll(cftoLoc.addToBag);
     browser.click(cftoLoc.addToBag);
     browser.waitForVisible(cftoLoc.miniBagContainer);
     browser.click(cftoLoc.miniBag);
-    browser.click(cftoLoc.checkoutButton);
 }
 
 function logIn() // Function to provide Login Information
@@ -35,18 +36,25 @@ function search() { // Function to perform search operation on CFTO site
 function chooseCollection() {
 
     //Confirm the selected store from the store list
+    browser.scroll(cftoLoc.collectionStoreList);
     browser.click(cftoLoc.collectionStoreList);
+    browser.scroll(cftoLoc.collectionButton);
     browser.click(cftoLoc.collectionButton);
 
     //Confirm the store selection date
+    browser.scroll(cftoLoc.collectionDateSelect);
     browser.click(cftoLoc.collectionDateSelect);
+    browser.scroll(cftoLoc.collectionDateConfirm);
     browser.click(cftoLoc.collectionDateConfirm);
 
     //Select the store selection time slot
+    browser.scroll(cftoLoc.collectionTimeSlot);
     browser.click(cftoLoc.collectionTimeSlot);
+    browser.scroll(cftoLoc.collectionTimeConfirm);
     browser.click(cftoLoc.collectionTimeConfirm);
 
     //Click to confirm the choosen collection slot data & move-on to payment page
+    browser.scroll(cftoLoc.confirmCollection);
     browser.click(cftoLoc.confirmCollection);
 }
 
@@ -77,10 +85,14 @@ function userAddressForm() {
     browser.setValue(cftoLoc.emailId, 'sroy@sapient.com');
 }
 
+function enterAddressManually() {
+    browser.scroll(cftoLoc.enterAddressManually);
+    browser.click(cftoLoc.enterAddressManually);
+}
+
 function paymentReviewOrder() {
-    browser.waitForEnabled(cftoLoc.confirmPayment);
+    browser.scroll(cftoLoc.confirmPayment);
     browser.click(cftoLoc.confirmPayment);
     browser.click(cftoLoc.termsAndConditions);
-    browser.waitForEnabled(cftoLoc.confirmOrder);
     browser.click(cftoLoc.confirmOrder);
 }

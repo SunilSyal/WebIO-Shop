@@ -1,6 +1,6 @@
 module.exports = {
     //Add to bag
-    addToBag: '.add-to-bag__btn',
+    addToBag: '.add-to-bag__btn:first-of-type',
     miniBagContainer: 'script + .minibag-container',
     miniBag: 'script + .minibag-container .minibag-summary__button',
 
