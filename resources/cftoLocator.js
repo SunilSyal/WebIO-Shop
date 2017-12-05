@@ -4,6 +4,10 @@ module.exports = {
     miniBagContainer: 'script + .minibag-container',
     miniBag: 'script + .minibag-container .minibag-summary__button',
 
+    // Edr survey
+    surveyAvailable : '#edr_survey .edr_lwrap',
+    surveyCancel : '.buttons-group #no_button',
+
     //Checkout now
     checkoutButton: 'button[data-analyticsfunction="analyticsCheckoutButtonClicked"]',
     guestCheckoutButton: '#guestCheckoutContButton',
@@ -22,9 +26,14 @@ module.exports = {
     globalSearch: '.search-component__input',
     globalSearchButton: '.search-component__btn',
 
-    //Collection Store
+    //Collection Store UK
     collectionStoreSearchUK: '.collection--store-finder__search-form__input',
     storeSearchUK: '.collection--store-finder__search-form__btn',
+
+    //Collection Store IE
+    collectionStoreIE : 'label[for="store_4048"]',
+
+    //Collection Slots
     collectionStoreList: '.collection--store-list__store--closest',
     collectionButton: '.collection--store-list--menu .btn--primary',
 

@@ -4,19 +4,39 @@ module.exports = {
     addToBag: addToBag,
     logIn: logIn,
     search: search,
-    chooseCollection: chooseCollection,
+    chooseCollectionStoreUK: chooseCollectionStoreUK,
+    chooseCollectionStoreIE: chooseCollectionStoreIE,
+    chooseCollectionSlot: chooseCollectionSlot,
     cardDetailsLightBox: cardDetailsLightBox,
     cardDetailsForm: cardDetailsForm,
     userAddressForm: userAddressForm,
     enterAddressManually: enterAddressManually,
-    paymentReviewOrder: paymentReviewOrder
+    paymentReviewOrder: paymentReviewOrder,
+    closeSurvey: closeSurvey
+
 };
+
+  function closeSurvey() {
+var survey = browser.isVisible(cftoLoc.surveyAvailable);
+    if(survey === true)
+    {
+     browser.click(cftoLoc.surveyCancel);
+    }else
+  {
+    return 0;
+  }
+
+}
 
 function addToBag() {
     browser.scroll(cftoLoc.addToBag);
+    closeSurvey();
     browser.click(cftoLoc.addToBag);
+    closeSurvey();
     browser.waitForVisible(cftoLoc.miniBagContainer);
+    closeSurvey();
     browser.click(cftoLoc.miniBag);
+    closeSurvey();
 }
 
 function logIn() // Function to provide Login Information
@@ -33,25 +53,57 @@ function search() { // Function to perform search operation on CFTO site
     browser.click(cftoLoc.globalSearchButton);
 }
 
-function chooseCollection() {
+function chooseCollectionStoreUK() {
 
-    //Confirm the selected store from the store list
+    //Confirm the selected UK store from the store list
+    closeSurvey();
     browser.scroll(cftoLoc.collectionStoreList);
+    closeSurvey();
     browser.click(cftoLoc.collectionStoreList);
+    closeSurvey();
     browser.scroll(cftoLoc.collectionButton);
+    closeSurvey();
     browser.click(cftoLoc.collectionButton);
+    closeSurvey();
+}
+
+function chooseCollectionStoreIE() {
+
+    //Confirm the selected IE store from the store list
+    closeSurvey();
+    browser.scroll(cftoLoc.collectionStoreIE);
+    closeSurvey();
+    browser.click(cftoLoc.collectionStoreIE);
+    closeSurvey();
+    browser.scroll(cftoLoc.collectionButton);
+    closeSurvey();
+    browser.click(cftoLoc.collectionButton);
+    closeSurvey();
+}
+
+function chooseCollectionSlot() {
 
     //Confirm the store selection date
+    closeSurvey();
     browser.scroll(cftoLoc.collectionDateSelect);
+    closeSurvey();
     browser.click(cftoLoc.collectionDateSelect);
+    closeSurvey();
     browser.scroll(cftoLoc.collectionDateConfirm);
+    closeSurvey();
     browser.click(cftoLoc.collectionDateConfirm);
+    closeSurvey();
 
     //Select the store selection time slot
+    closeSurvey();
     browser.scroll(cftoLoc.collectionTimeSlot);
+    closeSurvey();
     browser.click(cftoLoc.collectionTimeSlot);
+    closeSurvey();
     browser.scroll(cftoLoc.collectionTimeConfirm);
+    closeSurvey();
     browser.click(cftoLoc.collectionTimeConfirm);
+    closeSurvey();
 
     //Click to confirm the choosen collection slot data & move-on to payment page
     browser.scroll(cftoLoc.confirmCollection);
@@ -59,19 +111,19 @@ function chooseCollection() {
 }
 
 function cardDetailsLightBox() {
-    browser.selectByValue(cftoLoc.selectCardType, '11105_Mastercard');
-    browser.setValue(cftoLoc.enterCardNumber, '5105105105105100');
+    browser.selectByValue(cftoLoc.selectCardType, '11104_Visa');
+    browser.setValue(cftoLoc.enterCardNumber, '4012001038443335');
     browser.setValue(cftoLoc.selectExpiryMonth, '02');
     browser.setValue(cftoLoc.selectExpiryYear, '18');
     browser.setValue(cftoLoc.enterCardCvv, '609');
 }
 
 function cardDetailsForm() {
-    browser.selectByValue(cftoLoc.selectCardType, '11105_Mastercard');
-    browser.setValue(cftoLoc.enterCardNumberForm, '5454609899026213');
+    browser.selectByValue(cftoLoc.selectCardType, '11104_Visa');
+    browser.setValue(cftoLoc.enterCardNumberForm, '4012001038443335');
     browser.setValue(cftoLoc.selectExpiryMonthForm, '02');
     browser.setValue(cftoLoc.selectExpiryYearForm, '18');
-    browser.setValue(cftoLoc.enterCardCvvForm, '215');
+    browser.setValue(cftoLoc.enterCardCvvForm, '609');
 }
 
 function userAddressForm() {
@@ -86,8 +138,10 @@ function userAddressForm() {
 }
 
 function enterAddressManually() {
+    closeSurvey();
     browser.scroll(cftoLoc.enterAddressManually);
     browser.click(cftoLoc.enterAddressManually);
+    closeSurvey();
 }
 
 function paymentReviewOrder() {
