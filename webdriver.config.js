@@ -5,6 +5,17 @@ global.domainName = "http://www.stage.marksandspencer.com";
 var argsInfo = 'Page:: ' + specs.fnGetArgValue(process.argv, '-p') + ', Breakpoint:: ' + specs.fnGetArgValue(process.argv, '-b');
 
 var capabilities = {
+
+   'firefox': [{
+      name: 'Browser:: firefox, ' + argsInfo,
+      browserName: 'firefox'
+    }],
+
+    'phantomjs' : [{
+       name: 'Browser:: phantomjs, ' + argsInfo,
+       browserName: 'phantomjs'
+     }],
+
     'large': [{
         name: 'Browser:: Chrome, ' + argsInfo,
         browserName: 'chrome'
@@ -58,12 +69,12 @@ exports.config = {
     host: 'localhost',
     port: 4444,
 
-    // user: 'ajayvashist',
-    // key: '3a3de365-598e-46f8-8d34-5a669e754e95',
+    //user: 'sroy14',
+    //key: '0e026a53-b243-4498-b9fe-e2963dfb68cb',
 
     specs: specArr,
 
-    services: ['selenium-standalone'],
+    services: ['selenium-standalone', 'chromedriver'],
 
     maxInstances: 10,
 
@@ -72,15 +83,18 @@ exports.config = {
     capabilities: capabilities[specs.fnGetArgValue(process.argv, '-b')],
 
     sync: true,
+
+
     reporters: ['junit','allure'],
     reporterOptions: {
       junit: {
             outputDir: './'
              },
-        allure: {
+      allure: {
             outputDir: 'allure-results'
                 }
     },
+
 
     before: function() {
         var chai = require('chai');
